@@ -37,9 +37,7 @@ const TodoHead = () => {
     timer = setInterval(() => {
       setTime(moment());
     }, 1000);
-    return () => {
-      clearInterval(timer);
-    };
+    return () => clearInterval(timer);
   }, []);
 
   const dayString = time.format('LLLL').slice(0, 9);

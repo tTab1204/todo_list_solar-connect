@@ -1,7 +1,7 @@
-import { CheckOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Itodo } from "components/todo/TodoService";
-import React from "react";
-import styled, { css } from "styled-components";
+import { CheckOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Itodo } from 'components/todo/TodoService';
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 const Remove = styled.div`
   display: flex;
@@ -62,16 +62,18 @@ interface TodoItemProps {
 
 const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
   const done = false;
-  const handleToggle = () => {};
+  const handleToggle = (id: number) => {
+    toggleTodo(id);
+  };
 
   const handleRemove = () => {};
 
   return (
     <TodoItemBlock>
-      <CheckCircle done={done} onClick={handleToggle}>
-        {done && <CheckOutlined />}
+      <CheckCircle done={todo.done} onClick={() => handleToggle(todo.id)}>
+        {todo.done && <CheckOutlined />}
       </CheckCircle>
-      <Text done={done}>{todo.text}</Text>
+      <Text done={todo.done}>{todo.text}</Text>
       <Remove onClick={handleRemove}>
         <DeleteOutlined />
       </Remove>
