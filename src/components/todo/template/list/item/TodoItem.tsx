@@ -58,7 +58,6 @@ interface TodoItemProps {
   toggleTodo: (id: number) => void;
   removeTodo: (id: number) => void;
   todo: Itodo;
-
 }
 
 const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
@@ -76,8 +75,8 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
         {todo.done && <CheckOutlined />}
       </CheckCircle>
       <Text done={todo.done}>{todo.text}</Text>
-      <Remove onClick={() => handleRemove(todo.id)}>
-        <DeleteOutlined style={{ cursor: 'pointer' }} />
+      <Remove>
+        <DeleteOutlined onClick={() => handleRemove(todo.id)} />
       </Remove>
     </TodoItemBlock>
   );
