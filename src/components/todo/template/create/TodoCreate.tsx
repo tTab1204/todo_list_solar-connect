@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { PlusCircleOutlined } from "@ant-design/icons";
-import { Itodo } from "components/todo/TodoService";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { PlusCircleOutlined } from '@ant-design/icons';
+import { Itodo } from 'components/todo/TodoService';
 
 const CircleButton = styled.button<{ open: boolean }>`
   background: #33bb77;
@@ -55,17 +55,12 @@ interface TodoCreateProps {
   incrementNextId: () => void;
 }
 
-const TodoCreate = ({
-  nextId,
-  createTodo,
-  incrementNextId
-}: TodoCreateProps) => {
+const TodoCreate = ({ nextId, createTodo, incrementNextId }: TodoCreateProps) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   const handleToggle = () => setOpen(!open);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setValue(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // 새로고침 방지
@@ -73,11 +68,11 @@ const TodoCreate = ({
     createTodo({
       id: nextId,
       text: value,
-      done: false
+      done: false,
     });
     incrementNextId(); // nextId 하나 증가
 
-    setValue(""); // input 초기화
+    setValue(''); // input 초기화
     setOpen(false); // open 닫기
   };
 
@@ -85,12 +80,7 @@ const TodoCreate = ({
     <>
       <InsertFormPositioner>
         <InsertForm onSubmit={handleSubmit}>
-          <Input
-            autoFocus
-            placeholder="What's need to be done?"
-            onChange={handleChange}
-            value={value}
-          />
+          <Input autoFocus placeholder="What's need to be done?" onChange={handleChange} value={value} />
 
           <CircleButton onClick={handleToggle} open={open}>
             <PlusCircleOutlined />
