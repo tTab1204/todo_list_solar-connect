@@ -84,9 +84,6 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
     removeTodo(id);
   };
 
-  // remove
-  //() => handleRemove(todo.id)
-
   const showModal = () => {
     setIsModalVisible(true);
   };
