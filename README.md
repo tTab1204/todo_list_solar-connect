@@ -1,5 +1,5 @@
 
-#  원티드 프리온보딩 코스 프론트엔드 Solar Connect 기업 과제
+#  원티드 프리온보딩 코스 프론트엔드 solarconnect 기업과제
 
 ## 📌 배포 링크
 https://solar-connect-2.netlify.app/
