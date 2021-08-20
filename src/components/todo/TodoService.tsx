@@ -1,17 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export type Itodo = {
-  id: number;
+  id: string;
   text: string;
   done: boolean;
+  deadline: string;
 };
 
 let initialTodos: Itodo[] = [];
 
 export const useTodo = () => {
   const [todoState, setTodoState] = useState(initialTodos);
-  var nextIdState = 0;
+  const [nextIdState, setNextIdState] = useState('');
 
   useEffect(() => {
     loadData();
@@ -21,24 +23,23 @@ export const useTodo = () => {
     saveData();
   }, [todoState]);
 
-  const incrementNextId = () => {
-    nextIdState = nextIdState + 1;
+  const getUniqueTodoId = () => {
+    setNextIdState(uuidv4());
   };
 
-  const toggleTodo = (id: number) => {
+  const toggleTodo = (id: string) => {
     setTodoState((prevState) => prevState.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo)));
   };
 
-  const removeTodo = (id: number) => {
+  const removeTodo = (id: string) => {
     setTodoState((prevState) => prevState.filter((todo: Itodo) => todo.id !== id));
   };
 
   const createTodo = (todo: Itodo) => {
-    const nextId = todoState?.length + 1;
     setTodoState((prevState) =>
-      prevState?.concat({
+      prevState.concat({
         ...todo,
-        id: nextId,
+        id: uuidv4(),
       }),
     );
   };
@@ -48,7 +49,7 @@ export const useTodo = () => {
     if (data === undefined) data = '';
     initialTodos = JSON.parse(data!);
     if (initialTodos && initialTodos?.length >= 1) {
-      incrementNextId();
+      getUniqueTodoId();
     }
     setTodoState(initialTodos);
   };
@@ -60,7 +61,6 @@ export const useTodo = () => {
   return {
     todoState,
     nextIdState,
-    incrementNextId,
     toggleTodo,
     removeTodo,
     createTodo,
