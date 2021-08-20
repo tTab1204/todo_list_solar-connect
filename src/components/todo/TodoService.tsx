@@ -15,6 +15,8 @@ export const useTodo = () => {
   const [todoState, setTodoState] = useState(initialTodos);
   const [loading, setLoading] = useState(true);
 
+  let nextId = Date.now();
+
   useEffect(() => {
     loadData();
   }, []);
@@ -32,10 +34,8 @@ export const useTodo = () => {
   };
 
   const createTodo = (todo: Itodo) => {
-    let nextId = Date.now();
-
     setTodoState((prevState) =>
-      prevState.concat({
+      prevState?.concat({
         ...todo,
         id: nextId,
       }),
@@ -45,8 +45,9 @@ export const useTodo = () => {
   const loadData = () => {
     setLoading(true);
     let data = localStorage.getItem('todos');
-    if (data === undefined) data = '';
+    if (data === null) data = '[]';
     initialTodos = JSON.parse(data!);
+
     setTodoState(initialTodos);
     setLoading(false);
   };
@@ -61,5 +62,6 @@ export const useTodo = () => {
     removeTodo,
     createTodo,
     loading,
+    nextId,
   };
 };
