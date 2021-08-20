@@ -15,6 +15,7 @@ let initialTodos: Itodo[] = [];
 export const useTodo = () => {
   const [todoState, setTodoState] = useState(initialTodos);
   const [nextIdState, setNextIdState] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadData();
@@ -46,6 +47,7 @@ export const useTodo = () => {
   };
 
   const loadData = () => {
+    setLoading(true);
     let data = localStorage.getItem('todos');
     if (data === undefined) data = '';
     initialTodos = JSON.parse(data!);
@@ -53,6 +55,7 @@ export const useTodo = () => {
       getUniqueTodoId();
     }
     setTodoState(initialTodos);
+    setLoading(false);
   };
 
   const saveData = () => {
@@ -65,5 +68,6 @@ export const useTodo = () => {
     toggleTodo,
     removeTodo,
     createTodo,
+    loading,
   };
 };
