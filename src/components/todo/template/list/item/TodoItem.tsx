@@ -1,7 +1,8 @@
-import { CheckOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Itodo } from 'components/todo/TodoService';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
+import { CheckOutlined, DeleteOutlined, CalendarOutlined } from '@ant-design/icons';
+import { Divider } from 'antd';
 
 const Remove = styled.div`
   display: flex;
@@ -43,8 +44,8 @@ const CheckCircle = styled.div<{ done: boolean }>`
 `;
 
 const Text = styled.div<{ done: boolean }>`
-  flex: 1;
   font-size: 16px;
+  font-weight: 500;
   color: #119955;
   ${(props) =>
     props.done &&
@@ -52,6 +53,17 @@ const Text = styled.div<{ done: boolean }>`
       color: #ced4da;
       text-decoration: line-through;
     `}
+`;
+
+const ContentBox = styled.div`
+  display: block;
+  flex: 1;
+`;
+
+const DateBox = styled.div<{ isExpired: boolean }>`
+  font-size: 12px;
+  font-weight: 500;
+  color: ${({ isExpired }) => (isExpired ? '#f5222d' : '#ad6800')};
 `;
 
 interface TodoItemProps {
@@ -70,16 +82,26 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
   };
 
   return (
-    <TodoItemBlock>
-      <CheckCircle done={todo.done} onClick={() => handleToggle(todo.id)}>
-        {todo.done && <CheckOutlined />}
-      </CheckCircle>
-      <Text done={todo.done}>{todo.text}</Text>
-      <span>{todo.deadline}</span>
-      <Remove>
-        <DeleteOutlined onClick={() => handleRemove(todo.id)} />
-      </Remove>
-    </TodoItemBlock>
+    <div>
+      <TodoItemBlock>
+        <CheckCircle done={todo.done} onClick={() => handleToggle(todo.id)}>
+          {todo.done && <CheckOutlined />}
+        </CheckCircle>
+        <ContentBox>
+          <Text done={todo.done}>{todo.text}</Text>
+
+          <DateBox isExpired={todo.isExpired}>
+            {todo.deadline && <CalendarOutlined style={{ marginRight: '0.3rem' }} />}
+            {todo.deadline}
+          </DateBox>
+        </ContentBox>
+
+        <Remove>
+          <DeleteOutlined onClick={() => handleRemove(todo.id)} />
+        </Remove>
+      </TodoItemBlock>
+      <Divider style={{ margin: 0 }} />
+    </div>
   );
 };
 

@@ -7,6 +7,7 @@ export type Itodo = {
   text: string;
   done: boolean;
   deadline: string;
+  isExpired: boolean;
 };
 
 let initialTodos: Itodo[] = [];

@@ -59,12 +59,16 @@ const TodoCreate = ({ nextId, createTodo }: TodoCreateProps) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
   const [pickDate, setPickDate] = useState('');
+  const [isExpired, setIsExpired] = useState(false);
 
   const handleToggle = () => setOpen(!open);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
 
   const onHandleDate = (date: any, dateString: string) => {
     setPickDate(dateString);
+
+    const now = new Date();
+    now > date ? setIsExpired(true) : setIsExpired(false);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -75,10 +79,10 @@ const TodoCreate = ({ nextId, createTodo }: TodoCreateProps) => {
       text: value,
       done: false,
       deadline: pickDate,
+      isExpired: isExpired,
     });
 
     setValue(''); // input 초기화
-    setPickDate('');
     setOpen(false); // open 닫기
   };
 
