@@ -14,7 +14,7 @@ interface ISpinnerProps {
 }
 
 interface IWrapperProp {
-  readonly 'data-mask': boolean;
+  readonly ['data-mask']: boolean;
 }
 
 const StyledSpinnerWrapper = styled(Row)<IWrapperProp>`
