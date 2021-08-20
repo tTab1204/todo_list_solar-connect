@@ -51,8 +51,8 @@ const Input = styled.input`
 `;
 
 interface TodoCreateProps {
-  nextId: string;
   createTodo: (todo: Itodo) => void;
+  nextId: number;
 }
 
 const TodoCreate = ({ nextId, createTodo }: TodoCreateProps) => {

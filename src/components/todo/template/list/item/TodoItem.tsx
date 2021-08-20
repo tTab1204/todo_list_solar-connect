@@ -68,19 +68,19 @@ const DateBox = styled.div<{ isExpired: boolean }>`
 `;
 
 interface TodoItemProps {
-  toggleTodo: (id: string) => void;
-  removeTodo: (id: string) => void;
+  toggleTodo: (id: number) => void;
+  removeTodo: (id: number) => void;
   todo: Itodo;
 }
 
 const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleToggle = (id: string) => {
+  const handleToggle = (id: number) => {
     toggleTodo(id);
   };
 
-  const handleRemove = (id: string) => {
+  const handleRemove = (id: number) => {
     removeTodo(id);
   };
 
