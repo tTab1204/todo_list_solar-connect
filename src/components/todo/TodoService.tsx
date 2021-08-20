@@ -46,7 +46,7 @@ export const useTodo = () => {
     setLoading(true);
     let data = localStorage.getItem('todos');
     if (data === null) data = '[]';
-    initialTodos = JSON.parse(data!);
+    initialTodos = JSON.parse(data);
 
     setTodoState(initialTodos);
     setLoading(false);
