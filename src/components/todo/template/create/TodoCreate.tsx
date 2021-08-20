@@ -76,7 +76,7 @@ const TodoCreate = ({ nextId, createTodo }: TodoCreateProps) => {
 
     createTodo({
       id: nextId,
-      text: value,
+      text: value.trim(),
       done: false,
       deadline: pickDate,
       isExpired: isExpired,
