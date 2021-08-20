@@ -55,17 +55,17 @@ const Text = styled.div<{ done: boolean }>`
 `;
 
 interface TodoItemProps {
-  toggleTodo: (id: number) => void;
-  removeTodo: (id: number) => void;
+  toggleTodo: (id: string) => void;
+  removeTodo: (id: string) => void;
   todo: Itodo;
 }
 
 const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
-  const handleToggle = (id: number) => {
+  const handleToggle = (id: string) => {
     toggleTodo(id);
   };
 
-  const handleRemove = (id: number) => {
+  const handleRemove = (id: string) => {
     removeTodo(id);
   };
 
@@ -75,6 +75,7 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
         {todo.done && <CheckOutlined />}
       </CheckCircle>
       <Text done={todo.done}>{todo.text}</Text>
+      <span>{todo.deadline}</span>
       <Remove>
         <DeleteOutlined onClick={() => handleRemove(todo.id)} />
       </Remove>
