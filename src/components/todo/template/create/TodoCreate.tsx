@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { Itodo } from 'components/todo/TodoService';
-import { DatePicker } from 'antd';
+import { DatePicker, message } from 'antd';
 
 const CircleButton = styled.button<{ open: boolean }>`
   background: #33bb77;
@@ -74,16 +74,20 @@ const TodoCreate = ({ nextId, createTodo }: TodoCreateProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // 새로고침 방지
 
-    createTodo({
-      id: nextId,
-      text: value.trim(),
-      done: false,
-      deadline: pickDate,
-      isExpired: isExpired,
-    });
+    if (value) {
+      createTodo({
+        id: nextId,
+        text: value.trim(),
+        done: false,
+        deadline: pickDate,
+        isExpired: isExpired,
+      });
 
-    setValue(''); // input 초기화
-    setOpen(false); // open 닫기
+      setValue(''); // input 초기화
+      setOpen(false); // open 닫기
+    } else {
+      message.warning('Please enter content');
+    }
   };
 
   return (
