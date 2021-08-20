@@ -24,7 +24,7 @@ https://solar-connect-2.netlify.app/
 - Todo의 id를 unique하도록 변경
 - localStorage가 비어있을 때 오류가 발생하지 않도록 수정
 
-5. 개선 부분
+**5. 개선 부분**
 - 목표일(마감일)이 오늘 이전일 경우 빨간색으로 표시, 오늘 이후일 경우 갈색으로 표시
 
 ## 설치 및 실행
