@@ -1,5 +1,5 @@
 import { Itodo } from 'components/todo/TodoService';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import TodoItem from './item/TodoItem';
 
@@ -12,8 +12,8 @@ const TodoListBlock = styled.div`
 
 interface TodoListProps {
   todos: Itodo[];
-  toggleTodo: (id: string) => void;
-  removeTodo: (id: string) => void;
+  toggleTodo: (id: number) => void;
+  removeTodo: (id: number) => void;
 }
 
 const TodoList = ({ toggleTodo, removeTodo, todos }: TodoListProps) => {

@@ -51,11 +51,10 @@ const Input = styled.input`
 `;
 
 interface TodoCreateProps {
-  nextId: string;
   createTodo: (todo: Itodo) => void;
 }
 
-const TodoCreate = ({ nextId, createTodo }: TodoCreateProps) => {
+const TodoCreate = ({ createTodo }: TodoCreateProps) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
   const [pickDate, setPickDate] = useState('');
@@ -76,7 +75,7 @@ const TodoCreate = ({ nextId, createTodo }: TodoCreateProps) => {
 
     if (value) {
       createTodo({
-        id: nextId,
+        id: 0,
         text: value.trim(),
         done: false,
         deadline: pickDate,

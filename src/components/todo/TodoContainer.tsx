@@ -8,7 +8,7 @@ import TodoFooter from './template/footer/TodoFooter';
 import Loading from 'components/common/Loading';
 
 const TodoContainer = () => {
-  const { todoState, nextIdState, toggleTodo, removeTodo, createTodo, loading } = useTodo();
+  const { todoState, toggleTodo, removeTodo, createTodo, loading } = useTodo();
 
   return (
     <>
@@ -16,7 +16,7 @@ const TodoContainer = () => {
       {!loading && (
         <TodoTemplate>
           <TodoHead />
-          <TodoCreate nextId={nextIdState} createTodo={createTodo} />
+          <TodoCreate createTodo={createTodo} />
           <TodoList toggleTodo={toggleTodo} removeTodo={removeTodo} todos={todoState} />
           <TodoFooter todos={todoState} />
         </TodoTemplate>
