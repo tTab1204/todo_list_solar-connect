@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import moment from 'moment';
 import styled from 'styled-components';
+import moment from 'moment';
+import { days } from 'utils/date';
 
 const TodoHeadBlock = styled.div`
   display: flex;
@@ -40,7 +41,7 @@ const TodoHead = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const dayString = time.format('LLLL').slice(0, 9);
+  const dayString = days[time.day()];
   const dateString = time.format('LL');
   const timeString = time.format('LTS');
 
